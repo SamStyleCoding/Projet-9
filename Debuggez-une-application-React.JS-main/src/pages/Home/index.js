@@ -91,8 +91,8 @@ const Page = () => {
           />
         </div>
       </section>
-      <div className="FormContainer">
-        <h2 id="contact" className="Title">Contact</h2>
+      <div id="contact" className="FormContainer">
+        <h2 className="Title">Contact</h2>
         <Modal
           Content={
             <div className="ModalMessage--success">
