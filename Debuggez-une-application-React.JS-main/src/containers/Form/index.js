@@ -6,7 +6,7 @@ import Button, { BUTTON_TYPES } from "../../components/Button";
 
 const mockContactApi = () => new Promise((resolve) => { setTimeout(resolve, 500); })
 
-const Form = ({ onSuccess, onError }) => {
+const Form = ({ onSuccess = () => null, onError = () => null }) => {
   const [sending, setSending] = useState(false);
   const sendContact = useCallback(
     async (evt) => {
@@ -16,7 +16,7 @@ const Form = ({ onSuccess, onError }) => {
       try {
         await mockContactApi();
         setSending(false);
-        onSuccess();       // Add onSuccess is called if mockContactApi succeed
+        onSuccess();       // Add onSuccess
       } catch (err) {
         setSending(false);
         onError(err);
@@ -59,9 +59,9 @@ Form.propTypes = {
   onSuccess: PropTypes.func,
 }
 
-Form.defaultProps = {
-  onError: () => null,
-  onSuccess: () => null,
-}
+// Form.defaultProps = {
+//   onError: () => null,
+//   onSuccess: () => null,
+// }
 
 export default Form;

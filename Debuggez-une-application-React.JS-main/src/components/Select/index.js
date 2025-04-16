@@ -7,10 +7,10 @@ import "./style.scss";
 
 const Select = ({
   selection,
-  onChange,
-  name,
-  titleEmpty,
-  label,
+  onChange = () => null,
+  name = "select",
+  titleEmpty = false,
+  label = "",
   type = "normal",
 }) => {
   const [value, setValue] = useState();
@@ -32,7 +32,7 @@ const Select = ({
             <>
               {!titleEmpty && (
                 <li onClick={() => changeValue(null)}>
-                  <input defaultChecked={!value} name="selected" type="radio" />{" "}
+                  <input defaultChecked={!value} name="selected" type="radio" onChange={() => changeValue(null)} />{" "}
                   Toutes
                 </li>
               )}
@@ -42,6 +42,7 @@ const Select = ({
                     defaultChecked={value === s}
                     name="selected"
                     type="radio"
+                    onChange={() => changeValue(s)}
                   />{" "}
                   {s}
                 </li>
@@ -90,12 +91,12 @@ Select.propTypes = {
   type: PropTypes.string,
 }
 
-Select.defaultProps = {
-  onChange: () => null,
-  titleEmpty: false,
-  label: "",
-  type: "normal",
-  name: "select",
-}
+// Select.defaultProps = {
+//   onChange: () => null,
+//   titleEmpty: false,
+//   label: "",
+//   type: "normal",
+//   name: "select",
+// }
 
 export default Select;

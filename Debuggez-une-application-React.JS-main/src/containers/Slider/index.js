@@ -8,13 +8,13 @@ const Slider = () => {
   const { data } = useData();
   const [index, setIndex] = useState(0);
   const byDateDesc = data?.focus.sort((evtA, evtB) =>
- // new Date(evtA.date) < new Date(evtB.date) ? -1 : 1 Ancienne fonction de comparaison
+ // new Date(evtA.date) < new Date(evtB.date) ? -1 : 1 Ancienne fonction
     new Date(evtA.date) > new Date(evtB.date) ? -1 : 1         
   );
   const nextCard = () => {
     setTimeout(
-   // () => setIndex(index < byDateDesc.length ? index + 1 : 0), Ancienne fonction (index = 0/1/2/3 car byDateDesc.length = 3)
-      () => setIndex(index + 1 < byDateDesc?.length ? index + 1 : 0), // Nouvelle fonction (index = 1/2/3 car byDateDesc.length - 1 = 2)
+   // () => setIndex(index < byDateDesc.length ? index + 1 : 0), Ancienne fonction
+      () => setIndex(index + 1 < byDateDesc?.length ? index + 1 : 0), 
       5000
     );
   };
@@ -45,12 +45,13 @@ const Slider = () => {
             <div className="SlideCard__pagination">
               {byDateDesc.map((_, radioIdx) => (
                 <input
-                // Modification de key={`${event.id}`}
+                // Modification de key={`${_.id}`}
                   key={`${_.title}`}
                   type="radio"
                   name="radio-button"
                 // Modification de idx en index
                   checked={index === radioIdx}
+                  onChange={()=> setIndex(radioIdx)}
                 />
               ))}
             </div>

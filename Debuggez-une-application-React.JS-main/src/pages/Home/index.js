@@ -18,8 +18,7 @@ const Page = () => {
   const { data } = useData();
 
   const last =
-    data && data.events && data.events.length > 0
-      ? data.events.reduce((latest, current) => {
+    data ? data.events.reduce((latest, current) => {
 
         const latestDate = new Date(latest.date);
         const currentDate = new Date(current.date);
@@ -129,6 +128,7 @@ const Page = () => {
       </div>
     </main>
     <footer className="row">
+      { last && (
       <div className="col presta">
         <h3>Notre derniére prestation</h3>
         <EventCard
@@ -136,9 +136,11 @@ const Page = () => {
           title={last?.title}
           date={new Date(last?.date)}
           small
-          label="boom"
+       // label="boom"
+          label={last?.type}
         />
       </div>
+      )}
       <div className="col contact">
         <h3>Contactez-nous</h3>
         <address>45 avenue de la République, 75000 Paris</address>
