@@ -1,0 +1,4 @@
+[build]
+  base = "Debuggez-une-application-React.JS-main"
+  command = "CI=false yarn build"
+  publish = "build"
